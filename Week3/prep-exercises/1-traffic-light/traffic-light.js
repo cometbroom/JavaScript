@@ -6,17 +6,28 @@
  */
 
 function getCurrentState(trafficLight) {
-  // TODO
-  // Should return the current state (i.e. colour) of the `trafficLight`
-  // object passed as a parameter.
+    return trafficLight.possibleStates[trafficLight.stateIndex];
+    // TODO
+    // Should return the current state (i.e. colour) of the `trafficLight`
+    // object passed as a parameter.
 }
 
 function getNextStateIndex(trafficLight) {
-  // TODO
-  // Return the index of the next state of the `trafficLight` such that:
-  // - if the color is green, it will turn to orange
-  // - if the color is orange, it will turn to red
-  // - if the color is red, it will turn to green
+    let current = getCurrentState(trafficLight);
+
+    switch (current) {
+        case "green":
+            return 1;
+        case "orange":
+            return 2;
+        case "red":
+            return 0;
+    }
+    // TODO
+    // Return the index of the next state of the `trafficLight` such that:
+    // - if the color is green, it will turn to orange
+    // - if the color is orange, it will turn to red
+    // - if the color is red, it will turn to green
 }
 
 // This function loops for the number of seconds specified by the `secs`
@@ -25,25 +36,26 @@ function getNextStateIndex(trafficLight) {
 // JavaScript. You will learn better ways of doing this when you learn about
 // asynchronous code.
 function waitSync(secs) {
-  const start = Date.now();
-  while (Date.now() - start < secs * 1000) {
-    // nothing do to here
-  }
+    const start = Date.now();
+
+    while (Date.now() - start < secs * 1000) {
+        // nothing do to here
+    }
 }
 
 function main() {
-  const trafficLight = {
-    possibleStates: ["green", "orange", "red"],
-    stateIndex: 0,
-  };
+    const trafficLight = {
+        possibleStates: ["green", "orange", "red"],
+        stateIndex: 0,
+    };
 
-  for (let cycle = 0; cycle < 6; cycle++) {
-    const currentState = getCurrentState(trafficLight);
-    console.log(cycle, "The traffic light is now", currentState);
+    for (let cycle = 0; cycle < 6; cycle++) {
+        const currentState = getCurrentState(trafficLight);
+        console.log(cycle, "The traffic light is now", currentState);
 
-    waitSync(1); // Wait a second before going to the next state
-    trafficLight.stateIndex = getNextStateIndex(trafficLight);
-  }
+        waitSync(1); // Wait a second before going to the next state
+        trafficLight.stateIndex = getNextStateIndex(trafficLight);
+    }
 }
 
 main();
