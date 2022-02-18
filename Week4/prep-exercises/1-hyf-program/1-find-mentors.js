@@ -1,8 +1,8 @@
 import {
-  modules,
-  students,
-  mentors,
-  classes,
+    modules,
+    students,
+    mentors,
+    classes,
 } from "../../../Week1/prep-exercises/1-objects-and-arrays/hyf";
 
 /**
@@ -13,10 +13,7 @@ import {
  *  ['John', 'Mary']
  */
 const possibleMentorsForModule = (moduleName) => {
-  // TODO complete this function
 };
-// You can uncomment out this line to try your function
-// console.log(possibleMentorsForModule('using-apis'));
 
 /**
  * Tjebbe wants to make it even easier for himself.
@@ -25,7 +22,7 @@ const possibleMentorsForModule = (moduleName) => {
  * It should return a single name.
  */
 const findMentorForModule = (moduleName) => {
-  // TODO complete this function
+    // TODO complete this function
 };
 // You can uncomment out this line to try your function
 // console.log(findMentorForModule('javascript'));

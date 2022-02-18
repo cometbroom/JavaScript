@@ -13,28 +13,26 @@ function getCurrentState(trafficLight) {
 }
 
 function getNextStateIndex(trafficLight) {
-    let current = getCurrentState(trafficLight);
-
-    switch (current) {
-        case "green":
-            return 1;
-        case "orange":
-            return 2;
-        case "red":
-            return 0;
-    }
-    // TODO
-    // Return the index of the next state of the `trafficLight` such that:
-    // - if the color is green, it will turn to orange
-    // - if the color is orange, it will turn to red
-    // - if the color is red, it will turn to green
+    return (trafficLight.stateIndex + 1) % 3;
 }
+// TODO
+// Return the index of the next state of the `trafficLight` such that:
+// - if the color is green, it will turn to orange
+// - if the color is orange, it will turn to red
+// - if the color is red, it will turn to green
 
 // This function loops for the number of seconds specified by the `secs`
 // parameter and then returns.
 // IMPORTANT: This is not the recommended way to implement 'waiting' in
 // JavaScript. You will learn better ways of doing this when you learn about
 // asynchronous code.
+/*
+function remainder(number, divisor) {
+  const division = Math.floor(number / divider);
+  return number - division * divisor;
+}
+
+*/
 function waitSync(secs) {
     const start = Date.now();
 
