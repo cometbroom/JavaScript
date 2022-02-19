@@ -10,28 +10,54 @@
  */
 
 const bankAccount = {
-  // The currentBalance is how much money you have in your bankAccount.
-  currentBalance: 250,
-  // The transactions are a list of changes so that you can keep track.
-  transactions: [
-    /**
-     * The prevAmount is what your balance was before the transaction,
-     * the newAmount is what your balance was after the transaction
-     * and the reason is what the transaction was about
-     */
-    {
-      prevAmount: 350,
-      newAmount: 250,
-      reason: "Donation",
-    },
-  ],
+    // The currentBalance is how much money you have in your bankAccount.
+    currentBalance: 250,
+    // The transactions are a list of changes so that you can keep track.
+    transactions: [
+        /**
+         * The prevAmount is what your balance was before the transaction,
+         * the newAmount is what your balance was after the transaction
+         * and the reason is what the transaction was about
+         */
+        {
+            prevAmount: 350,
+            newAmount: 250,
+            reason: "Donation",
+        },
+    ],
 };
 
 const donateMoney = (amount, onSuccess, onFail) => {
-  // TODO complete this function
+    if (amount) {
+        let prevAmount = bankAccount.currentBalance;
+
+        if (bankAccount.currentBalance >= amount) {
+            bankAccount.currentBalance -= amount;
+            bankAccount.transactions.push({
+                prevAmount: prevAmount,
+                newAmount: bankAccount.currentBalance,
+                reason: "Donation",
+            });
+            onSuccess();
+        } else {
+            onFail();
+        }
+    }
 };
 const payRent = (amount, onSuccess, onFail) => {
-  // TODO complete this function
+    let prevAmount = bankAccount.currentBalance;
+
+    if (bankAccount.currentBalance >= amount && amount) {
+        bankAccount.currentBalance -= amount;
+        bankAccount.transactions.push({
+            prevAmount: prevAmount,
+            newAmount: bankAccount.currentBalance,
+            reason: "Rent",
+        });
+        onSuccess();
+    } else {
+        onFail();
+    }
 };
 
 /**
@@ -39,17 +65,17 @@ const payRent = (amount, onSuccess, onFail) => {
  */
 
 const onSuccessEnglish = () => {
-  console.log("Payment successful! Thank you!");
+    console.log("Payment successful! Thank you!");
 };
 const onFailEnglish = () => {
-  console.log("You do not have enough money to make this payment.");
+    console.log("You do not have enough money to make this payment.");
 };
 
 const onSuccessDutch = () => {
-  console.log("Betaling geslaagd! Dank u!");
+    console.log("Betaling geslaagd! Dank u!");
 };
 const onFailDutch = () => {
-  console.log("U heeft niet voldoende saldo om deze betaling te doen.");
+    console.log("U heeft niet voldoende saldo om deze betaling te doen.");
 };
 
 donateMoney(100, onSuccessEnglish, onFailEnglish);
